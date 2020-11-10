@@ -29,6 +29,11 @@ def filtradoCaballos(df):
     print(dfCaballos)
 
 
+def ordenarDatos(df):
+    dfOrdenado = df.sort_values('price')
+    print(dfOrdenado)
+
+
 def noImplementado():
     print("No implementado")
 
@@ -53,7 +58,7 @@ def main():
             elif res == 2:
                 noImplementado()
             elif res == 3:
-                noImplementado()
+                ordenarDatos(df)
             elif res == 4:
                 datosEstadisticos(df)
             elif res == 5:
