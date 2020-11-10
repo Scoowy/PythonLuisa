@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
+from pandas.core.frame import DataFrame
 
 
 def cargarDatos(archivo):
@@ -14,7 +15,22 @@ def cargarDatos(archivo):
 
 
 def imprimirFilas(df):
-    print(df[[2, -3]])
+    print(df.iloc[[2, -3, -2, -1]])
+
+
+def datosEstadisticos(df):
+    print(df.describe())
+
+
+def filtradoCaballos(df):
+    isCaballos = df['horsepower'] < 100
+    dfCaballos = df[isCaballos]
+
+    print(dfCaballos)
+
+
+def noImplementado():
+    print("No implementado")
 
 
 def main():
@@ -29,19 +45,21 @@ def main():
 
     while True:
         print(
-            'Opciones:\n1 Imprimir filas\n2 Menor precio\3ordenar\4Estadisticos\5Filtrado')
+            'Opciones:\n1 Imprimir filas\n2 Menor precio\n3 ordenar\n4 Estadisticos\n5 Filtrado\n0 Salir')
         res = int(input("Ingrese una opcion: ").strip())
-        if res != "" and res > 0 and res < 6:
+        if res != "" and res >= 0 and res <= 5:
             if res == 1:
                 imprimirFilas(df)
             elif res == 2:
-                pass
+                noImplementado()
             elif res == 3:
-                pass
+                noImplementado()
             elif res == 4:
-                pass
+                datosEstadisticos(df)
             elif res == 5:
-                pass
+                filtradoCaballos(df)
+            elif res == 0:
+                break
         else:
             print("Ingrese una opcion correcta.")
     cargarDatos("info_autos.csv")
