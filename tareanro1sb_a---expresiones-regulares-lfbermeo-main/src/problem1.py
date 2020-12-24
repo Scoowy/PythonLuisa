@@ -18,7 +18,7 @@ def remover_puntuacion(path_file):
 
 
 def main():
-    print(remover_puntuacion("mensaje.txt"))
+    print(remover_puntuacion("./src/mensaje.txt"))
 
 
 if __name__ == "__main__":
