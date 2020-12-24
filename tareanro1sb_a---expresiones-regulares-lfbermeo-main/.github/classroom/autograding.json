@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "EJEMPLO",
+      "setup": "sudo -H pip3 install pytest",
+      "run": "python3 -m pytest test/test_ejemplo.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "PROBLEM1",
+      "setup": "sudo -H pip3 install pytest",
+      "run": "python3 -m pytest test/test_problem1.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+    {
+      "name": "PROBLEM2",
+      "setup": "sudo -H pip3 install pytest",
+      "run": "python3 -m pytest test/test_problem2.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+    {
+      "name": "PROBEM3",
+      "setup": "sudo -H pip3 install pytest",
+      "run": "python3 -m pytest test/test_problem3.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    }
+  ]
+}

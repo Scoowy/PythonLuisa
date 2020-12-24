@@ -1,0 +1,2 @@
+language = "python3"
+run = "if python3 -c 'import pytest'; then python3 -m pytest; else pip3 install pytest; python3 -m pytest; fi"

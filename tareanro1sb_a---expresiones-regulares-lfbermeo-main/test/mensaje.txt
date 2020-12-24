@@ -1,0 +1,1 @@
+Este archivo tiene algunos caracteres especiales:!?.,;:/()
