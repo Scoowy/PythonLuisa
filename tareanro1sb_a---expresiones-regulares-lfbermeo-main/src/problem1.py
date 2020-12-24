@@ -9,14 +9,17 @@ def leer_contenido(path):
 
 
 # Completar la función remover_puntuacion para remover las puntuaciones  !?.,;:/()
-# No use iteración (bucles) en esta asignación. ¡Recuerde importar re para usar regex! 
-# La función debe devolver una cadena sin ninguno de los signos de puntuación anteriores. 
-# Sugerencia: considere usar re.sub (). 
+# No use iteración (bucles) en esta asignación. ¡Recuerde importar re para usar regex!
+# La función debe devolver una cadena sin ninguno de los signos de puntuación anteriores.
+# Sugerencia: considere usar re.sub ().
 def remover_puntuacion(path_file):
-    pass
+    newText = re.sub(r'[!?.,;:/()]', '', leer_contenido(path_file))
+    return newText
+
 
 def main():
-    print(remover_puntuacion("mensaje.txt"))
+    print(remover_puntuacion("./src/mensaje.txt"))
+
 
 if __name__ == "__main__":
     main()
