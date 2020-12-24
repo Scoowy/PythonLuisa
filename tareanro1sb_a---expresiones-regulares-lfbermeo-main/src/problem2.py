@@ -7,15 +7,4 @@ import re
 
 def regex_ayuda(patron, cadena_entrada):
     pattern = re.compile(patron)
-    match = pattern.match(cadena_entrada)
-
-    return match.groups()
-
-
-def main():
-    print(regex_ayuda(
-        r'[!?.,;:/()]', 'Este archivo tiene algunos caracteres especiales:!?.,;:/()'))
-
-
-if __name__ == "__main__":
-    main()
+    return pattern.findall(cadena_entrada)
