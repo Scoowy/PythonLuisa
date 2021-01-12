@@ -1,4 +1,7 @@
 import pandas as pd
+from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 
 class DataManager(object):
@@ -38,4 +41,49 @@ class DataManager(object):
         """
         Metodo que deveulve una lista de ciudades perteneciente a un pais
         """
+        pass
+
+
+class PlotManager(object):
+    """
+    Clase que implemta metodos para gestionar el Plot
+    """
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._plotero: Figure = plt.figure()
+
+    def pruebaPlot(self, sampleGroup):
+        # title = f"Daily number of Cases and Deaths in {sampleGroup.name} (14-day mean)"
+        # plt.title(title)
+
+        # afgI = sampleData.infections.plot(x=xLabels, kind="area", legend=True)
+        # afgI.set_ylabel("Infections")
+        # afgI.set_ylim(bottom=0)
+        # afgI.set_xlabel("da")
+
+        # afgD = sampleData.deaths.plot(
+        #     x=xLabels, secondary_y=True, kind="line", legend=True)
+        # afgD.set_ylabel("Deaths")
+        # afgD.set_ylim(bottom=0)
+        pass
+
+
+class Canvas(FigureCanvas):
+    """
+    Clase que reprensenta el canvas donde se dibujara el grafico
+    """
+
+    def __init__(self):
+        # Codigo para generar la grafica
+        # self.figura = Figure()
+        # self.ejes = self.figura.add_subplot(111)
+        # self.tiempo = np.arange(0.0, 5.65, 0.01)
+        # # Calculo de la posicion en el eje X y Y
+        # self.x = fx(self.tiempo)
+        # self.y = fy(self.tiempo)
+        # # Se crea la grafica
+        # self.ejes.plot(self.x, self.y)
+        # # inicializar el lienzo donde se crea la grafica.
+        # FigureCanvas.__init__(self, self.figura)
         pass

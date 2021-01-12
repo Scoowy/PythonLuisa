@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QMainWindow, QRadioButton
 from PyQt5.QtCore import pyqtSlot
+
 from src.controller.C_MainWindow import MainController
 from src.model.M_MainWindow import MainModel
-
 from src.view.MainWindow_ui import Ui_MainWindow
 from src.utils.enums import DataOptions, TypeOptions
 
