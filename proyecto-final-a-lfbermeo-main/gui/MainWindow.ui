@@ -287,38 +287,23 @@
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spbRange">
+     <widget class="QLCDNumber" name="lcdRange">
       <property name="geometry">
        <rect>
         <x>210</x>
-        <y>30</y>
-        <width>42</width>
-        <height>22</height>
+        <y>20</y>
+        <width>41</width>
+        <height>41</height>
        </rect>
       </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
       </property>
-      <property name="readOnly">
-       <bool>false</bool>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
       </property>
-      <property name="buttonSymbols">
-       <enum>QAbstractSpinBox::PlusMinus</enum>
-      </property>
-      <property name="correctionMode">
-       <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-      </property>
-      <property name="keyboardTracking">
-       <bool>false</bool>
-      </property>
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>15</number>
-      </property>
-      <property name="singleStep">
-       <number>1</number>
+      <property name="digitCount">
+       <number>2</number>
       </property>
      </widget>
     </widget>
