@@ -36,6 +36,7 @@ class MainController(QObject):
         Controlador que escucha el evento de cambio en el slider de rango
         """
         print(value)
+        self._model.rangeValue = value
 
     @pyqtSlot(DataOptions)
     def selectDataOption(self, value):

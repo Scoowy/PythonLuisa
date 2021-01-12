@@ -5,9 +5,21 @@ class MainModel(QObject):
     """
     Model para la vista principal
     """
-    component_changed = pyqtSignal(int)
+    rangeValueChanged = pyqtSignal(int)
 
     def __init__(self):
         super().__init__()
 
-        self._component_selected = 0
+        self._rangeValue = 0
+
+    @property
+    def rangeValue(self) -> int:
+        """
+        rangeValue property.
+        """
+        return self._rangeValue
+
+    @rangeValue.setter
+    def rangeValue(self, value):
+        self._rangeValue = value
+        self.rangeValueChanged.emit(self._rangeValue)

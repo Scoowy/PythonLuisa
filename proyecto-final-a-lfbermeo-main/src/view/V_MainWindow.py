@@ -25,6 +25,7 @@ class MainView(QMainWindow):
 
         self.initializeValues()
         self.connectWithControllers()
+        self.connectWithModels()
 
     def initializeValues(self):
         """
@@ -50,9 +51,9 @@ class MainView(QMainWindow):
         self._ui.sldAverageDays.valueChanged.connect(
             self._controller.selectRange)
 
-        # Conectar el SpinBox con su controlador
-        self._ui.spbRange.valueChanged.connect(
-            self._controller.selectRange)
+        # Conectar el valor del LcdDisplay con el valor del slider
+        self._ui.sldAverageDays.valueChanged.connect(
+            self._ui.lcdRange.display)
 
         # Conectar los RadioButtons de opciones de datos con su controlador
         self._ui.rdbCases.toggled.connect(
@@ -67,6 +68,9 @@ class MainView(QMainWindow):
             self.determineRadioTypeOption)
         self._ui.rdbDaily.toggled.connect(
             self.determineRadioTypeOption)
+
+    def connectWithModels(self):
+        pass
 
     def determineRadioDataOption(self):
         """
