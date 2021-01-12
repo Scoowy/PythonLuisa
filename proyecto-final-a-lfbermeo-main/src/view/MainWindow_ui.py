@@ -96,10 +96,8 @@ class Ui_MainWindow(object):
         self.lcdRange.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.lcdRange.setDigitCount(2)
         self.lcdRange.setObjectName("lcdRange")
-        self.pnlPlot = QtWidgets.QFrame(self.centralwidget)
+        self.pnlPlot = PlotWidget(self.centralwidget)
         self.pnlPlot.setGeometry(QtCore.QRect(20, 20, 761, 401))
-        self.pnlPlot.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.pnlPlot.setFrameShadow(QtWidgets.QFrame.Raised)
         self.pnlPlot.setObjectName("pnlPlot")
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -122,3 +120,4 @@ class Ui_MainWindow(object):
         self.groupBox.setTitle(_translate("MainWindow", "Average # of days"))
         self.label.setText(_translate("MainWindow", "1"))
         self.label_2.setText(_translate("MainWindow", "15"))
+from pyqtgraph import PlotWidget

@@ -1,10 +1,12 @@
-from PyQt5.QtWidgets import QMainWindow, QRadioButton
-from PyQt5.QtCore import pyqtSlot
-
-from src.controller.C_MainWindow import MainController
-from src.model.M_MainWindow import MainModel
-from src.view.MainWindow_ui import Ui_MainWindow
+from PyQt5 import QtGui
 from src.utils.enums import DataOptions, TypeOptions
+from src.view.MainWindow_ui import Ui_MainWindow
+from src.model.M_MainWindow import MainModel
+from src.controller.C_MainWindow import MainController
+from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import QMainWindow, QRadioButton
+from src.utils.manager import Canvas, PlotManager
+from pyqtgraph import PlotDataItem
 
 
 class MainView(QMainWindow):
@@ -23,6 +25,8 @@ class MainView(QMainWindow):
         self._ui = Ui_MainWindow()
         self._ui.setupUi(self)
 
+        self.stylingPlot()
+
         self.initializeValues()
         self.connectWithControllers()
         self.connectWithModels()
@@ -34,6 +38,11 @@ class MainView(QMainWindow):
         self._ui.listCountries.addItems(
             ["Country 1", "Country 2", "Country 3"])
         self._ui.listStates.addItems(["State 1", "State 2", "State 3"])
+
+        self._controller.passPlotWidgetToModel(self._ui.pnlPlot)
+
+        # self._ui.pnlPlot.plot([0, 1, 2, 3, 4], [10, 1, 20, 3, 40])
+        # self._ui.pnlPlot.plot([0, 1, 2, 3, 4], [2, 5, 12, 7, 34])
 
     def connectWithControllers(self):
         """
@@ -89,3 +98,21 @@ class MainView(QMainWindow):
         if radioBtn.isChecked():
             self._controller.selectDataOption(
                 TypeOptions[radioBtn.text().upper()])
+
+    def stylingPlot(self):
+        colorDefault = self.palette().color(QtGui.QPalette.Window)
+        plot = self._ui.pnlPlot
+
+        plot.setBackground(colorDefault)
+        plot.setTitle(
+            "Daily number of Cases and Deaths in Spain (14-day mean)",
+            color=(57, 57, 58),
+            size="18pt"
+        )
+
+        styles = {'color': (57, 57, 58), 'font-size': '12px'}
+        plot.setLabel('left', 'Infections', **styles)
+        plot.setLabel('right', 'Deaths', **styles)
+        plot.showGrid(x=False, y=True)
+        plot2 = PlotDataItem([0, 1, 2, 8], [48, 57, 14, 3], antialias=True)
+        plot.addItem(plot2)

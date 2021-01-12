@@ -308,7 +308,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QFrame" name="pnlPlot">
+   <widget class="PlotWidget" name="pnlPlot" native="true">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -317,16 +317,18 @@
       <height>401</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
    </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="10"/>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
  <designerdata>

@@ -1,7 +1,12 @@
-import pandas as pd
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
+from src.config.config import PLOT_AREA_TITLE_FORMAT
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+import pandas as pd
+
+import pyqtgraph as pg
+from pyqtgraph.graphicsItems.PlotDataItem import PlotDataItem
+from pyqtgraph.widgets.PlotWidget import PlotWidget
 
 
 class DataManager(object):
@@ -9,12 +14,23 @@ class DataManager(object):
     Clase que provee de metodos para segmentar y trabajar con la iformacion del Dataframe
     """
 
-    def __init__(self, df: pd.DataFrame) -> None:
+    def __init__(self, df: pd.DataFrame = None) -> None:
         """
         Constructor
         """
         super().__init__()
         self._df = df
+
+    @property
+    def df(self) -> pd.DataFrame:
+        """
+        df property.
+        """
+        return self._df
+
+    @df.setter
+    def df(self, value):
+        self._df = value
 
     def getNewDataFrameFromCountry(serie: pd.Series) -> pd.DataFrame:
         data = {"infections": [], "deaths": []}
@@ -49,41 +65,27 @@ class PlotManager(object):
     Clase que implemta metodos para gestionar el Plot
     """
 
-    def __init__(self) -> None:
+    def __init__(self, plotArea: PlotWidget = None) -> None:
         super().__init__()
-        self._plotero: Figure = plt.figure()
+        self._plotArea = plotArea
+        self._plotInfecctions = PlotDataItem()
+        self._plotDeaths = PlotDataItem()
+        # pg.plot([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])
+        # self._plotero: Figure = plt.figure()
 
-    def pruebaPlot(self, sampleGroup):
-        # title = f"Daily number of Cases and Deaths in {sampleGroup.name} (14-day mean)"
-        # plt.title(title)
+    @property
+    def plotArea(self) -> PlotWidget:
+        """
+        plotArea property.
+        """
+        return self._plotArea
 
-        # afgI = sampleData.infections.plot(x=xLabels, kind="area", legend=True)
-        # afgI.set_ylabel("Infections")
-        # afgI.set_ylim(bottom=0)
-        # afgI.set_xlabel("da")
+    @plotArea.setter
+    def plotArea(self, value: PlotWidget):
+        self._plotArea = value
 
-        # afgD = sampleData.deaths.plot(
-        #     x=xLabels, secondary_y=True, kind="line", legend=True)
-        # afgD.set_ylabel("Deaths")
-        # afgD.set_ylim(bottom=0)
-        pass
-
-
-class Canvas(FigureCanvas):
-    """
-    Clase que reprensenta el canvas donde se dibujara el grafico
-    """
-
-    def __init__(self):
-        # Codigo para generar la grafica
-        # self.figura = Figure()
-        # self.ejes = self.figura.add_subplot(111)
-        # self.tiempo = np.arange(0.0, 5.65, 0.01)
-        # # Calculo de la posicion en el eje X y Y
-        # self.x = fx(self.tiempo)
-        # self.y = fy(self.tiempo)
-        # # Se crea la grafica
-        # self.ejes.plot(self.x, self.y)
-        # # inicializar el lienzo donde se crea la grafica.
-        # FigureCanvas.__init__(self, self.figura)
-        pass
+    def setStylePlotArea(self):
+        # colorDefault = self.palette().color(QtGui.QPalette.Window)
+        # Titulo de la grafica
+        self._plotArea.setTitle(PLOT_AREA_TITLE_FORMAT.format(
+            {"country": "ALL", "average": 1}))
