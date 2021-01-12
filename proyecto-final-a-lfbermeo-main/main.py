@@ -1,22 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
+from PyQt5.QtWidgets import QApplication
+from src.model.M_MainWindow import MainModel
+from src.controller.C_MainWindow import MainController
+from src.view.V_MainWindow import MainView
 
-from src.utils import cargarDatos, prepareData, passDfToObjects
 
+class App(QApplication):
+    def __init__(self, argv: list) -> None:
+        super().__init__(argv)
 
-def main():
-    df = cargarDatos("data/covid_data.csv")
-
-    if df is not None:
-        df = prepareData(df, rangeCol=[3])
-        print(df.head())
-        countries = passDfToObjects(df)
-
-        print(countries)
-
-    else:
-        print("No cargo correctamente")
+        self.model = MainModel()
+        self.controller = MainController(self.model)
+        self.view = MainView(self.model, self.controller)
+        self.view.show()
 
 
 if __name__ == "__main__":
-    main()
+    app = App(sys.argv)
+    sys.exit(app.exec_())
