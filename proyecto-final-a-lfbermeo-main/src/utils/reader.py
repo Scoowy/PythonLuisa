@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 import re
 
 from src.config.config import CSV_INDEX_COL, CSV_PATTER_TUPLE_VALUES, CSV_SEPARATOR
@@ -10,6 +10,9 @@ class ReaderData(object):
     """
 
     def __init__(self, pathfile: str) -> None:
+        """
+        Constructor de clase
+        """
         super().__init__()
         self._pathfile = pathfile
         self._df = None
@@ -22,7 +25,7 @@ class ReaderData(object):
         Se usa el metodo `.read_csv()`, para leer el aarchivo que contiene los datos en formato csv.
         Adicionamos el parametro `index_col` al metodo, que nos permite decirle a **Pandas** que columna queremos que sea el indice de las filas.  
         """
-        self._df = pandas.read_csv(
+        self._df = pd.read_csv(
             self._pathfile, sep=CSV_SEPARATOR, index_col=CSV_INDEX_COL)
 
     def _cleanProcessDf(self):
