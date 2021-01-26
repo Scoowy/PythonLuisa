@@ -5,7 +5,7 @@ from src.model.M_MainWindow import MainModel
 from src.controller.C_MainWindow import MainController
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow, QRadioButton
-from src.utils.manager import Canvas, PlotManager
+# from src.utils.manager import Canvas, PlotManager
 from pyqtgraph import PlotDataItem
 
 
