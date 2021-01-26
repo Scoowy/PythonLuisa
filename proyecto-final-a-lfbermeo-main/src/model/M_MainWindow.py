@@ -1,3 +1,4 @@
+from src.utils.manager import DataManager, PlotManager
 from PyQt5.QtCore import QObject, pyqtSignal
 
 
@@ -11,6 +12,8 @@ class MainModel(QObject):
         super().__init__()
 
         self._rangeValue = 0
+        self._plotManager = PlotManager()
+        self._dataManager = DataManager()
 
     @property
     def rangeValue(self) -> int:

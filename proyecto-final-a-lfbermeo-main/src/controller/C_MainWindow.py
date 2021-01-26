@@ -1,4 +1,5 @@
 from PyQt5.QtCore import QObject, pyqtSlot
+from pyqtgraph.widgets.PlotWidget import PlotWidget
 from src.model.M_MainWindow import MainModel
 from src.utils.enums import DataOptions, TypeOptions
 
@@ -56,3 +57,6 @@ class MainController(QObject):
         - Daily
         """
         print(value)
+
+    def passPlotWidgetToModel(self, plotWidget: PlotWidget):
+        pass
