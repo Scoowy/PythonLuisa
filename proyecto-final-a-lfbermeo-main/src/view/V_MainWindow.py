@@ -36,8 +36,8 @@ class MainView(QMainWindow):
         Metodo en el cual se inicializan algunos valores
         """
         self._ui.listCountries.addItems(
-            ["Country 1", "Country 2", "Country 3"])
-        self._ui.listStates.addItems(["State 1", "State 2", "State 3"])
+            self._model.getCountryList())
+        self._ui.listStates.addItems(self._model.getStateList())
 
         self._controller.passPlotWidgetToModel(self._ui.pnlPlot)
 
@@ -79,7 +79,8 @@ class MainView(QMainWindow):
             self.determineRadioTypeOption)
 
     def connectWithModels(self):
-        pass
+        self._model.rangeValueChanged.connect(self.onRangeValueChanged)
+        self._model.statesListChanged.connect(self.onStatesListChanged)
 
     def determineRadioDataOption(self):
         """
@@ -116,3 +117,12 @@ class MainView(QMainWindow):
         plot.showGrid(x=False, y=True)
         plot2 = PlotDataItem([0, 1, 2, 8], [48, 57, 14, 3], antialias=True)
         plot.addItem(plot2)
+
+    @pyqtSlot(int)
+    def onRangeValueChanged(self, value):
+        print(value)
+
+    @pyqtSlot(list)
+    def onStatesListChanged(self, value):
+        self._ui.listStates.clear()
+        self._ui.listStates.addItems(value)

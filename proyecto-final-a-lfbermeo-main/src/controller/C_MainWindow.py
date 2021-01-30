@@ -2,6 +2,7 @@ from PyQt5.QtCore import QObject, pyqtSlot
 from pyqtgraph.widgets.PlotWidget import PlotWidget
 from src.model.M_MainWindow import MainModel
 from src.utils.enums import DataOptions, TypeOptions
+from src.utils.manager import COUNTRIES_WITH_STATES
 
 
 class MainController(QObject):
@@ -22,14 +23,26 @@ class MainController(QObject):
         """
         Controlador que escucha el evento de cambio en la lista de paises
         """
-        print(value)
+        if (value != 'Global'):
+            if value in COUNTRIES_WITH_STATES:
+                self._model.changeStateList(value)
+            else:
+                self._model.changeStateList(None)
+                print(f"Graficar todos los datos de: {value}")
+
+        else:
+            self._model.changeStateList(None)
+            print("Graficar los datos globales")
 
     @pyqtSlot(str)
     def selectState(self, value):
         """
         Controlador que escucha el evento de cambio en la lista de ciudades
         """
-        print(value)
+        if (value != 'Todos'):
+            print(f"Graficar datos de {value}")
+        else:
+            print("Graficar los datos de todos")
 
     @pyqtSlot(int)
     def selectRange(self, value):
