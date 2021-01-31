@@ -18,7 +18,7 @@ class CalculatorController(QObject):
         """
         Controlador que escucha el evento del boton "="
         """
-        self._model.evaluateOperation()
+        self._model.evaluateExpression()
 
     @pyqtSlot(str)
     def addToken(self, value):

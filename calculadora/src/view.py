@@ -22,12 +22,8 @@ class CalculatorView(QMainWindow):
 
         self._ui.setupUi(self)
 
-        self.initializeValues()
         self.connectWithController()
         self.connectWithModel()
-
-    def initializeValues(self):
-        pass
 
     def connectWithController(self):
         """
@@ -75,8 +71,14 @@ class CalculatorView(QMainWindow):
         self._ui.btnEquals.clicked.connect(self._controller.resolve)
 
     def connectWithModel(self):
-        self._model.resultValueChanged.connect(self.onResultValueChanged)
+        """
+        Metodo en el cual se conectan todos los cambios del modelo con la interfaz
+        """
+        self._model.expressionChanged.connect(self.onResultValueChanged)
 
     @pyqtSlot(str)
     def onResultValueChanged(self, value):
+        """
+        Metodo que se ejecuta al escuchar un cambio en el valor del modelo
+        """
         self._ui.display.setText(value)

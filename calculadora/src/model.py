@@ -1,40 +1,64 @@
 from PyQt5.QtCore import QObject, pyqtSignal
 
-from src.utils import appendToken, evaluate, deleteToken, deleteAllTokens
-
 
 class CalculatorModel(QObject):
     """
     Modelo de la vista calculator
     """
 
-    resultValueChanged = pyqtSignal(str)
+    expressionChanged = pyqtSignal(str)
 
     def __init__(self) -> None:
         super().__init__()
-        self._resultValue = ''
+        self._expression = ''
 
     @property
-    def resultValue(self) -> str:
+    def expression(self) -> str:
         """
         resultValue property.
         """
-        return self._resultValue
+        return self._expression
 
-    @resultValue.setter
-    def resultValue(self, value):
-        self._resultValue = value
-        self.resultValueChanged.emit(self._resultValue)
+    @expression.setter
+    def expression(self, value):
+        self._expression = value
+        self.expressionChanged.emit(self._expression)
 
     def addToken(self, token):
-        # print(f"Add token: {token}")
-        self.resultValue = appendToken(self.resultValue, token)
+        """
+        Metodo que recibe una expresion y aniade un nuevo caracter
+        """
+        # Si la expresion anterior es ERROR se limpia y se aniade el nuevo caracter
+        if self.expression == 'ERROR':
+            self.expression = ''
+
+        self.expression = self.expression + token
 
     def deleteLastToken(self):
-        self.resultValue = deleteToken(self.resultValue)
+        """
+        Metodo que recibe una expresion y elimina el ultimo caracter
+        """
+        self.expression = self.expression[:-1]
 
     def deleteAllTokens(self):
-        self.resultValue = deleteAllTokens()
+        """
+        Metodo que devuelve un string vacio representando que la 
+        expresion a sido limpiada completametne
+        """
+        self.expression = ''
 
-    def evaluateOperation(self):
-        self.resultValue = evaluate(self.resultValue)
+    def evaluateExpression(self):
+        """
+        Metodo que intenta evaluar la expresion.
+        Si esta esta vacia se devulve vacio.
+        Si contiene una expresion valida se evalua y devuelve el resultado en string.
+        Si contiene una expresion no valida se devuelve el resultado 'ERROR'
+        """
+        if self.expression != '':
+            try:
+                res = eval(self.expression)
+                self.expression = str(res)
+            except:
+                self.expression = 'ERROR'
+        else:
+            self.expression = ''
