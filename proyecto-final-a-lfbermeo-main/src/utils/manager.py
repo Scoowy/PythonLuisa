@@ -9,6 +9,18 @@ from pyqtgraph.graphicsItems.PlotDataItem import PlotDataItem
 from pyqtgraph.widgets.PlotWidget import PlotWidget
 
 
+COUNTRIES_WITH_STATES = [
+    'Australia',
+    'Canada',
+    'China',
+    'Denmark',
+    'France',
+    'Netherlands',
+    'United Kingdom',
+    'United States',
+]
+
+
 class DataManager(object):
     """
     Clase que provee de metodos para segmentar y trabajar con la iformacion del Dataframe
@@ -51,13 +63,13 @@ class DataManager(object):
         """
         Metodo que devuelve una lista de paises
         """
-        return set(self._df.index.values.tolist())
+        return sorted(list(set(self._df.index.values.tolist())))
 
-    def getStates(self) -> list:
+    def getStates(self, country: str) -> list:
         """
         Metodo que deveulve una lista de ciudades perteneciente a un pais
         """
-        pass
+        return self._df.loc[country]['State'].dropna().values.tolist()
 
 
 class PlotManager(object):
