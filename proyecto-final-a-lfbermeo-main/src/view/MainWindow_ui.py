@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from pyqtgraph import PlotWidget
 
 
 class Ui_MainWindow(object):
@@ -26,7 +27,8 @@ class Ui_MainWindow(object):
         self.pnlOptions.setObjectName("pnlOptions")
         self.rdbCumulative = QtWidgets.QRadioButton(self.pnlOptions)
         self.rdbCumulative.setGeometry(QtCore.QRect(20, 30, 82, 17))
-        self.rdbCumulative.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.rdbCumulative.setCursor(
+            QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.rdbCumulative.setChecked(True)
         self.rdbCumulative.setObjectName("rdbCumulative")
         self.rdbDaily = QtWidgets.QRadioButton(self.pnlOptions)
@@ -54,17 +56,20 @@ class Ui_MainWindow(object):
         self.pnlCuntry.setObjectName("pnlCuntry")
         self.listCountries = QtWidgets.QListWidget(self.pnlCuntry)
         self.listCountries.setGeometry(QtCore.QRect(10, 20, 191, 171))
-        self.listCountries.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.listCountries.viewport().setProperty(
+            "cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.listCountries.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.listCountries.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.listCountries.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.listCountries.setVerticalScrollBarPolicy(
+            QtCore.Qt.ScrollBarAlwaysOn)
         self.listCountries.setObjectName("listCountries")
         self.pnlState = QtWidgets.QGroupBox(self.grpControls)
         self.pnlState.setGeometry(QtCore.QRect(250, 20, 211, 201))
         self.pnlState.setObjectName("pnlState")
         self.listStates = QtWidgets.QListWidget(self.pnlState)
         self.listStates.setGeometry(QtCore.QRect(10, 20, 191, 171))
-        self.listStates.viewport().setProperty("cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.listStates.viewport().setProperty(
+            "cursor", QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.listStates.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.listStates.setFrameShadow(QtWidgets.QFrame.Plain)
         self.listStates.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
@@ -74,7 +79,8 @@ class Ui_MainWindow(object):
         self.groupBox.setObjectName("groupBox")
         self.sldAverageDays = QtWidgets.QSlider(self.groupBox)
         self.sldAverageDays.setGeometry(QtCore.QRect(10, 30, 191, 22))
-        self.sldAverageDays.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.sldAverageDays.setCursor(
+            QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.sldAverageDays.setMinimum(1)
         self.sldAverageDays.setMaximum(15)
         self.sldAverageDays.setPageStep(1)
@@ -84,11 +90,13 @@ class Ui_MainWindow(object):
         self.sldAverageDays.setObjectName("sldAverageDays")
         self.label = QtWidgets.QLabel(self.groupBox)
         self.label.setGeometry(QtCore.QRect(10, 50, 16, 16))
-        self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label.setAlignment(QtCore.Qt.AlignLeading |
+                                QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.groupBox)
         self.label_2.setGeometry(QtCore.QRect(190, 50, 16, 16))
-        self.label_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_2.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.lcdRange = QtWidgets.QLCDNumber(self.groupBox)
         self.lcdRange.setGeometry(QtCore.QRect(210, 20, 41, 41))
@@ -106,7 +114,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "COVID-19 Data Visualization (Data source: Johns Hopkins University)"))
+        MainWindow.setWindowTitle(_translate(
+            "MainWindow", "COVID-19 Data Visualization (Data source: Johns Hopkins University)"))
         self.grpControls.setTitle(_translate("MainWindow", "Controles"))
         self.pnlOptions.setTitle(_translate("MainWindow", "Option"))
         self.rdbCumulative.setText(_translate("MainWindow", "Cumulative"))
@@ -120,4 +129,3 @@ class Ui_MainWindow(object):
         self.groupBox.setTitle(_translate("MainWindow", "Average # of days"))
         self.label.setText(_translate("MainWindow", "1"))
         self.label_2.setText(_translate("MainWindow", "15"))
-from pyqtgraph import PlotWidget

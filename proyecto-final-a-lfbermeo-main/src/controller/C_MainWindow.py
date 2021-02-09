@@ -24,33 +24,41 @@ class MainController(QObject):
         Controlador que escucha el evento de cambio en la lista de paises
         """
         if (value != 'Global'):
+            self._model.country = value
             if value in COUNTRIES_WITH_STATES:
                 self._model.changeStateList(value)
             else:
-                self._model.changeStateList(None)
                 print(f"Graficar todos los datos de: {value}")
+                self._model.changeStateList(None)
 
         else:
             self._model.changeStateList(None)
             print("Graficar los datos globales")
+            self._model.loadDataFromCountryState(value)
 
     @pyqtSlot(str)
     def selectState(self, value):
         """
         Controlador que escucha el evento de cambio en la lista de ciudades
         """
-        if (value != 'Todos'):
-            print(f"Graficar datos de {value}")
-        else:
-            print("Graficar los datos de todos")
+        if (value != ''):
+            self._model.state = value
+            if self._model.country in COUNTRIES_WITH_STATES:
+                # if (value != 'Todos'):
+                print(f"Graficar datos de {value}")
+                self._model.loadDataFromCountryState(
+                    self._model.country, self._model.state)
+            else:
+                print("Graficar los datos de todos")
+                self._model.loadDataFromCountryState(self._model.country)
 
     @pyqtSlot(int)
     def selectRange(self, value):
         """
         Controlador que escucha el evento de cambio en el slider de rango
         """
-        print(value)
         self._model.rangeValue = value
+        self._model.plotData()
 
     @pyqtSlot(DataOptions)
     def selectDataOption(self, value):
@@ -60,7 +68,8 @@ class MainController(QObject):
         - Deaths
         - Both
         """
-        print(value)
+        self._model.dataOption = value
+        self._model.plotData()
 
     @pyqtSlot(TypeOptions)
     def selectTypeOption(self, value):
@@ -69,7 +78,10 @@ class MainController(QObject):
         - Cumulative
         - Daily
         """
-        print(value)
+        self._model.typeOption = value
+        self._model.plotData()
 
-    def passPlotWidgetToModel(self, plotWidget: PlotWidget):
-        pass
+    def passPlotWidgetToModel(self, plotWidget: PlotWidget, backgroundColor):
+        self._model._plotManager.plotArea = plotWidget
+        self._model._plotManager.setStylePlotArea(
+            backgroundColor=backgroundColor)
