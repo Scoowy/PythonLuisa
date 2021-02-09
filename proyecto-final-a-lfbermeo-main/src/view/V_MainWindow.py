@@ -96,10 +96,13 @@ class MainView(QMainWindow):
 
     @pyqtSlot(int)
     def onRangeValueChanged(self, value):
-        print(value)
+        pass
 
     @pyqtSlot(list)
     def onStatesListChanged(self, value):
+        """
+        Metodo que escucha cuando existen cambios en la lista de ciudades
+        """
         self._ui.listStates.clear()
         self._ui.listStates.addItems(value)
         self._ui.listStates.setCurrentRow(0)

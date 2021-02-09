@@ -1,3 +1,5 @@
+# Archivo que conteine constantes a modo de arcivo de configuracion
+# para toda la aplicacion
 CSV_PATH = "./data/covid_data.csv"
 CSV_SEPARATOR = ";"
 CSV_INDEX_COL = "Country"
